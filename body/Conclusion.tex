@@ -1,0 +1,33 @@
+\chapter{Conclusion}
+\label{chp:conc} We have presented OSS as a new computable platform
+for the uniform and consistent measurement of concept similarity and
+combination. The platform, aiming at a high coverage of semantic
+space with a minimal concept set, shapes the ways of modeling
+concept inter-relatedness, while providing guideline for concept
+development. To show the feasibility of OSS, we explore and
+experiment search related tasks including word sense disambiguation
+and concept selection. Our findings show that, due to the uniform
+way of assessing similarity, OSS is a feasible solution for
+large-scale video search and concept combination. Currently we
+assume that OSS exists in a linear space for computational reason.
+Whether a nonlinear space assumption is feasible for OSS remains an
+unanswered issue that worths further investigation.
+
+A useful resource currently not explored in OSS is the co-occurrence
+statistics of concepts in video data. The statistics can be directly
+utilized for basis concept selection, amending the semantic space
+such that the co-occurred behavior can also be modeled. Under such
+circumstance, the space is enriched with both ontology semantic and
+statistics useful for video search. Developing the basis concepts in
+this space as detectors could be more realistic since the statistics
+indeed hint the utility and observability of the concepts.
+%
+In addition to positively correlated concepts, the set of negative
+concepts (e.g., {\em indoor} versus {\em outdoor}) is also a useful
+piece of information for fast pruning in video search as presented
+in \cite{W.H.Lin:ICME:2006}. It is possible to have another
+``negatively correlated'' semantic space, complementary to OSS, to
+allow fast filtering one on hand, and effective searching on the
+other hand. We will consider both aspects (co-occurrence and
+negative correlation) as the future extension of OSS.
+%

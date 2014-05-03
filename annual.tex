@@ -1,0 +1,105 @@
+%\documentclass[12pt,twoside]{report}
+\documentclass[12pt]{report}
+% note that the document can be single or double sided.
+\usepackage{suthesis-2e}
+
+\usepackage{graphicx}
+\usepackage{psfig}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{algorithm}
+\usepackage{float}
+\usepackage[dvips]{color}
+
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{amssymb,amsmath}
+
+
+%\documentclass[11pt,a4paper,english,etoc,normalcite,sloppy]{zjuthesis}
+%\definecolor{dgreen}{rgb}{0,.6,0}
+%\newcommand\comments[1]{\textcolor{blue}{#1}}% my comments
+%\renewcommand{\baselinestretch}{1.5}
+%\input{preamble}
+
+
+\includeonly{
+body/Introduction,%
+body/RelatedWork,%
+%body/ModelingSS,
+%body/PropertiesOSS,%
+%body/Experiments,%
+body/Conclusion }
+
+\usepackage[normalem]{ulem}
+\usepackage{subfigure}
+\usepackage{cite}
+
+
+\DeclareMathOperator*{\argmax}{argmax}
+
+\begin{document}
+%type of this report
+\reporttype{Annual Report}
+
+%which department you are reporting to
+\department2report{School of Graduate Studies}
+
+%the name of your unversity
+\reportUniversity{City University of Hong Kong}
+
+\title{Ontology-enriched Semantic Space\\ for Video Retrieval}
+%\ctitle{Xiaoyong WEI}
+\author{Xiaoyong WEI \\(50009819)}
+
+%the name of your department
+\dept{Computer Science Department}
+
+%the name of your supervisor
+\principaladviser{Chong-Wah NGO}
+
+\submitdate{Junuary 15,2008}
+
+
+
+\pagenumbering{roman}
+
+    \beforepreface
+\input{abstract}
+    \afterpreface
+
+
+
+%\input{acknowledgement}
+
+
+
+%\listoffigures
+%
+%\listoftables
+
+%\mainmatter
+
+\graphicspath{{figures/}}
+\include{body/Introduction}
+
+\include{body/RelatedWork}
+
+\include{body/ModelingSS}
+%
+\include{body/PropertiesOSS}
+
+\include{body/Experiments}
+
+\include{body/Conclusion}
+
+\bibliographystyle{unsrt}
+\bibliography{Reference/reference}
+%\mypub{My Publication Related to this
+%Report}{unsrt}{Reference/mypub}
+
+\appendix
+\input{body/publications}
+
+
+\end{document}

@@ -1,0 +1,16 @@
+\contentsline {chapter}{Abstract}{ii}
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {1.1}Background}{1}
+\contentsline {section}{\numberline {1.2}Ontology and Multimedia Ontology}{3}
+\contentsline {section}{\numberline {1.3}Concept-based Video Search and Ontology Reasoning}{5}
+\contentsline {section}{\numberline {1.4}Ontology-enriched Semantic Space}{6}
+\contentsline {section}{\numberline {1.5}Organization of This Report}{8}
+\contentsline {chapter}{\numberline {2}Related Work}{9}
+\contentsline {section}{\numberline {2.1}Concept Set}{10}
+\contentsline {section}{\numberline {2.2}Existing Ontologies}{10}
+\contentsline {section}{\numberline {2.3}Ontology Reasoning}{13}
+\contentsline {section}{\numberline {2.4}Ontology-based Video Search}{14}
+\contentsline {section}{\numberline {2.5}Anchor Selection}{16}
+\contentsline {section}{\numberline {2.6}Summary}{16}
+\contentsline {chapter}{\numberline {3}Conclusion}{17}
+\contentsline {chapter}{\numberline {A}My Publications in the past year}{19}
