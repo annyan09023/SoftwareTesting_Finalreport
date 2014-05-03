@@ -14,7 +14,8 @@
 \usepackage{mathrsfs}
 \usepackage{amsfonts}
 \usepackage{amssymb,amsmath}
-
+\usepackage[includemp,body={398pt,550pt},footskip=30pt,%
+            marginparwidth=60pt,marginparsep=10pt]{geometry}
 
 %\documentclass[11pt,a4paper,english,etoc,normalcite,sloppy]{zjuthesis}
 %\definecolor{dgreen}{rgb}{0,.6,0}
@@ -24,12 +25,15 @@
 
 
 \includeonly{
-body/Introduction,%
-body/RelatedWork,%
+body/Introduction,
+body/ConAirOverview,
+body/Design
+%body/RelatedWork,%
 %body/ModelingSS,
 %body/PropertiesOSS,%
 %body/Experiments,%
-body/Conclusion }
+%body/Conclusion % 
+}
 
 \usepackage[normalem]{ulem}
 \usepackage{subfigure}
@@ -40,25 +44,25 @@ body/Conclusion }
 
 \begin{document}
 %type of this report
-\reporttype{Annual Report}
+\reporttype{Software Testing Final Project Report}
 
 %which department you are reporting to
-\department2report{School of Graduate Studies}
+\department2report{School of Engineering}
 
 %the name of your unversity
-\reportUniversity{City University of Hong Kong}
+\reportUniversity{University of Texas at Austin}
 
-\title{Ontology-enriched Semantic Space\\ for Video Retrieval}
+\title{ConAir:\\ A Concurrency Bug Recovery Tool}
 %\ctitle{Xiaoyong WEI}
-\author{Xiaoyong WEI \\(50009819)}
+\author{Shiyu Dong \\Xuebin Yan}
 
 %the name of your department
-\dept{Computer Science Department}
+\dept{Electrical and Computer Engineer}
 
 %the name of your supervisor
-\principaladviser{Chong-Wah NGO}
+\principaladviser{Sarfraz Khurshid}
 
-\submitdate{Junuary 15,2008}
+\submitdate{May 3,2014}
 
 
 
@@ -80,12 +84,14 @@ body/Conclusion }
 
 %\mainmatter
 
+
 \graphicspath{{figures/}}
 \include{body/Introduction}
-
+\include {body/ConAirOverview}
+\include {body/Design}
 \include{body/RelatedWork}
 
-\include{body/ModelingSS}
+\include{body/ModelingSS} 
 %
 \include{body/PropertiesOSS}
 
@@ -98,8 +104,8 @@ body/Conclusion }
 %\mypub{My Publication Related to this
 %Report}{unsrt}{Reference/mypub}
 
-\appendix
-\input{body/publications}
+%\appendix
+%\input{body/publications}
 
 
 \end{document}
