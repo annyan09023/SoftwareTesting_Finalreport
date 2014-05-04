@@ -62,6 +62,7 @@ A very common concurrency bug in multi-thread programming is deadlock problem. A
 \end{figure}
 
 \section{Observation II}
+\label{sbii}
 For observation II, it indicates that roll back certain area of one thread is sufficient to fix bugs and that area is defined as idempotent region.\\
 \textbf{Idempotent region}:a code region that can be reexecuted for any number of times without changing the program semantics.\\
 It should end before the failing point because it is meaningless to roll back the error part. Besides it, the idempotent region should not contain any writes to shared variables. If it is, roll back it will continously change a global variable, which is unwanted by users. Furthermore, it will not contain any I/O operations. According to investigation, only 15 \% concurrency bugs contain I/0 operation. In order to guarantee the performance of ConAir, I/O operation is eliminated from idempotent region. Also, it should not contain any writes to local variables that could cause incorrect execution. This rule is also added to guarantee the correnctness of the ConAir. Some local variables, such as static ones is initialized once and changed extends for the entire run of the whole program. If it is included in the idempotent region, potentially incorrect output may happen.\\

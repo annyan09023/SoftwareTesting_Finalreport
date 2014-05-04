@@ -1,4 +1,4 @@
-\contentsline {chapter}{Abstract}{iii}
+\contentsline {chapter}{Abstract}{ii}
 \contentsline {chapter}{\numberline {1}Introduction}{1}
 \contentsline {section}{\numberline {1.1}Background}{1}
 \contentsline {section}{\numberline {1.2}Standards}{2}
@@ -10,6 +10,9 @@
 \contentsline {subsection}{\numberline {2.2.3}Rocovering deadlock bugs}{6}
 \contentsline {section}{\numberline {2.3}Observation II}{7}
 \contentsline {chapter}{\numberline {3}Design and Implementation of ConAir}{9}
+\contentsline {section}{\numberline {3.1}Identify Failure Sites}{9}
+\contentsline {section}{\numberline {3.2}Identify Idempotent Region}{11}
+\contentsline {section}{\numberline {3.3}Realize Roll Back Step}{11}
 \contentsline {chapter}{\numberline {2}Related Work}{9}
 \contentsline {section}{\numberline {2.1}Concept Set}{10}
 \contentsline {section}{\numberline {2.2}Existing Ontologies}{10}
