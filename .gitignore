@@ -219,3 +219,5 @@ pip-log.txt
 *.aux
 *.pdf
 *.out
+*.bbl
+*.blg

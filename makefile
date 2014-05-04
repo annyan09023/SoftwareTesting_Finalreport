@@ -6,7 +6,7 @@ open: pdf
 pdf:
 		pdflatex ${name}
 		pdflatex ${name}.tex;
-		#bibtex ${name}
+		bibtex ${name}
 		pdflatex ${name}.tex;
 clean:
 	rm -rf ${name}.aux ${name}.bbl ${name}.log ${name}.blg\

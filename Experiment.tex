@@ -1,3 +1,129 @@
 \section{Experiment}
 \label{sec:experiment}
-\subsection{ex1}
+With all infrastructure and toolchain prepared, we perform a series of experiment
+to demonstrate that ConAir is able to fix concurrency bugs. We will first
+illustrate the experimnt results from the author of ConAir. After that we will
+show our own experiment results for non-deadlock, deadlock programs and programs
+with other concurrenty bugs.
+
+\subsection{Original result}
+Table~\ref{tab:original} lists the experiment result from the author. In the
+ConAir paper the author evaluated ConAir on 10 real life programs, whose lines
+of code varies from 1.2K to 693K. All these programs have known failures to
+ConAir. The author run ConAir on these programs in two modes. The fix mode is
+used when the programmer know where the bug is, and manually insert some
+assertions to help ConAir identify and fix the bug; The survival mode is to run
+ConAir without any information of the program, and let ConAir find and fix all
+potential bugs on its own.
+
+\input{tabs/ex-original}
+
+From Table~\ref{tab:original} we can observe that ConAir is able to fix all
+concurrency bugs for all these 10 real life programs in fix mode. However, for
+wrong output failure, ConAir can only conditionally fix the bug in survival
+mode, which means that ConAir needs additinal assertion information to know what
+the correct output should be, otherwise ConAir cannot fix the bug. This
+experiment shows that ConAir is capable of recover and fix concurrency bugs of
+all know types, regardless of program sizes.
+
+\subsection{Non-deadlock programs}
+In order to further demonstrate how ConAir works for fixing different bugs, we
+come up with our own concurrency programs with different types of bugs, and run
+ConAir to see if it can fix the bug or not. Table~\ref{tab:nondl} lists all
+programs with their corresponding bugs, and the result of running the original
+executable and fixed executable. Since concurrency bugs do not always happen,
+for each program we let the program run for 1000 types in fix mode, which means
+  we add some assertions for the wrong output bug, and we record the number of
+  correct outputs.
+
+\input{tabs/ex-nondl}
+
+From Table~\ref{tab:nondl} we can see that ConAir is capable to fix all three
+known type of non-deadlock concurrency bugs. For example, for WAR1 only 31 out
+of 1000 runs give correct output for the original executable. However, all 1000
+runs give correct output after fix. We can observe similar behaviors for other
+programs and other bugs. One thing to note is for RAR1 and RAR2 even for the
+original program we cannot observe any error in 1000 runs, although we are sure
+thretically segmentation faults will happen, therefore it is not a counter
+exapml, therefore it is not a counter exapmle.
+
+\subsection{Deadlock programs}
+Different from non-deadlock programs, deadlock programs will usually hang up
+instead of hault immediately and give the wrong output. Therefore we design
+another experiment to demonstrate the ability of ConAir to fix deadlock bugs.
+We come up with two simple programs with deadlock. A code sinppet of Deadlock1
+is shown in Figure~\ref{fig:deadlock-code}.
+\begin{figure}[htbp]
+\begin{center}
+\begin{lstlisting}[language=C]
+              void thread1(void){
+                pthread_mutex_lock(&lock1);
+                pthread_mutex_lock(&lock2);
+                pthread_mutex_unlock(&lock1);
+                pthread_mutex_unlock(&lock2);
+                printf("t1 done\n");
+              }
+              void thread2(void){
+                pthread_mutex_lock(&lock2);
+                pthread_mutex_lock(&lock1);
+                pthread_mutex_unlock(&lock1);
+                pthread_mutex_unlock(&lock2);
+                printf("t2 done\n");
+              }
+\end{lstlisting}
+\caption{Code snippet of a deadlock bug}
+\end{center}
+\label{fig:deadlock-code}
+\end{figure}
+
+We run ConAir on the two programs with deadlock for 1000 times, and we will
+assume no deadlock happens if it does not hang for all 1000 times. The results
+are shown in Table~\ref{tab:dl}.
+
+\input{tabs/ex-dl}
+
+From Table~\ref{tab:dl} we can see that both the initial executable and fixed
+executable has deadlock programs. We tried to look into the ConAir code as well
+as its configuration file, and we believe all of our settings are correct, and
+therefore it might be that ConAir cannot fix the deadlock program that we have.
+
+We contacted the author with this question, together with our command,
+configuration file and our buggy programs. They told us that for running ConAir
+for deadlock programs some other commands need to be added, and they will
+  provide me some further explaination later. Therefore, we still believe that
+  ConAir is capable to fix some deadlock bugs, especially the one that we have. However, in the scope of this project we cannot demonstrate it yet.
+
+Also, in the ConAir paper the author claims that ConAir is not able to fix all
+deadlock bugs, if the deadlock cannot be fixed by reexecute the idempotent
+region. This claim make us to think that there may be other concurrenty bugs
+that ConAir cannot fix. We design another set of experiment in
+Section~\ref{sec:ex-other}, where we show how ConAir performs for other unknown
+types of concurrenty bugs.
+
+\subsection{Programs with other concurrenty bugs}
+\label{sec:ex-other}
+\input{tabs/ex-other}
+In the above experiments we show that ConAir is able to fix all known
+non-deadlock bugs, and we still believe it can fix the deadlock bugs if we use
+the right command. However, we would also want to understand how ConAir deals
+with other types of concurrenty bugs.
+
+However, it is not easy to find a good benchmark that satisfies our requirement.
+Most of the state-of-art concurrency benchmarks are designed to test the
+performance of CPU simulators, and they are all bug free. We do some literateral
+search but cannot find any simple set of buggy multithreaded programs.
+Fortunately, we are able to find a pthread programming
+exercise~\cite{pthread-web}, where it provides six buggy multithreaded programs
+with very different types of bugs from the ones that are supported by ConAir.
+Table~\ref{tab:other} lists all of the six programs and the description of each
+corresponding bug, as well as the execution result before and after running
+ConAir on the buggy program.
+
+From Table~\ref{tab:other} we can see that ConAir cannnot fix most of the
+unknown bugs. For bug1, bug2 and bug5 the results before and after fix are
+exactly the same. However, we could observe that although some bug types are
+unknown, ConAir will try to fix them. For example, for bug3 we can observe from
+the result that ConAir is trying to insert the setjmp() and longjmp() function,
+but just cannot fix that. For bug6 ConAir is providing a more stable output,
+compared with a pure random output before fix. For bug 4 ConAir can even fix the
+bug without knowing it can supporting that type of bug.

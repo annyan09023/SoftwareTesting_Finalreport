@@ -25,10 +25,25 @@ troublesome and time-consuming. The design of ConAir is based on users'
 requirements. It is an auto concurrency bug recovery tool which can be used to
 recovery a buggy multi-thread program.
 
-\subsection{Standards}
-There are four standards which are used to judge a tool's effectiveness, including:\\
-\textbf{Compatibility}: It is used to judge whether there is OS/Hardware modification for the tool. Some tools need low level modification, for example, the change of scheduler of OS. Wheras, OS is designed to be stable and limitedly changeable. If a tool needs OS modification, it may cause some future problems and demage the stableness of the whole system. Sometimes, it may even cause the crush of the system.\\
-\textbf{Correctness}: It is used to determine whether the usage of a tool will generate results infeasible for original software. If so, the usage of a tool causes more problems.\\
-\textbf{Generality}: With high generality, it indicates the tool can solve a wide variety of problems. The effectiveness of a tool is judged based on it because for multi-thread programming, problems are varied. If a tool can solve most common types of concurrency bugs, it is more feasible and practical.\\
-\textbf{Performance}: It is used to tell whether the tool adds small amount of overhead to the original program and has an ability of fast failure recovery. \\
-The design of ConAir takes all four standards into consideration. It does not require the change of OS or hardware. It guarantees not adding more bugs in origin software. It can solve most types of concurrency bugs and it limits the overhead to the least amount of time. 
+\subsection{Standards} There are four standards which are used to judge a tool's
+effectiveness, including:\\
+\indent\textbf{Compatibility}: It is used to judge
+whether there is OS/Hardware modification for the tool. Some tools need low
+level modification, for example, the change of scheduler of OS. Wheras, OS is
+designed to be stable and limitedly changeable. If a tool needs OS modification,
+it may cause some future problems and demage the stableness of the whole system.
+Sometimes, it may even cause the crush of the system.\\
+\indent\textbf{Correctness}: It is used to determine whether the usage of a tool
+will generate results infeasible for original software. If so, the usage of a
+tool causes more problems.\\
+\indent\textbf{Generality}: With high generality,
+it indicates the tool can solve a wide variety of problems. The effectiveness of
+a tool is judged based on it because for multi-thread programming, problems are
+varied. If a tool can solve most common types of concurrency bugs, it is more
+feasible and practical.\\
+\indent\textbf{Performance}: It is used to tell
+whether the tool adds small amount of overhead to the original program and has
+an ability of fast failure recovery. \\ The design of ConAir takes all four
+standards into consideration. It does not require the change of OS or hardware.
+It guarantees not adding more bugs in origin software. It can solve most types
+of concurrency bugs and it limits the overhead to the least amount of time.
