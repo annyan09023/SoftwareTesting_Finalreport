@@ -24,16 +24,16 @@
 %\input{preamble}
 
 
-\includeonly{
-body/Introduction,
-body/ConAirOverview,
-body/Design
-%body/RelatedWork,%
-%body/ModelingSS,
-%body/PropertiesOSS,%
-%body/Experiments,%
-%body/Conclusion % 
-}
+%\includeonly{
+%body/Introduction,
+%body/ConAirOverview,
+%body/Design
+%%body/RelatedWork,%
+%%body/ModelingSS,
+%%body/PropertiesOSS
+%%body/Experiments,%
+%%body/Conclusion % 
+%}
 
 \usepackage[normalem]{ulem}
 \usepackage{subfigure}
@@ -46,7 +46,7 @@ body/Design
 %type of this report
 \reporttype{Software Testing Final Project Report}
 
-%which department you are reporting to
+%%which department you are reporting to
 \department2report{School of Engineering}
 
 %the name of your unversity
@@ -54,10 +54,10 @@ body/Design
 
 \title{ConAir: A Concurrency Bug Recovery Tool}
 %\ctitle{Xiaoyong WEI}
-\author{Shiyu Dong \\Xuebin Yan}
+\author{Shiyu Dong, Xuebin Yan}
 
 %the name of your department
-\dept{Electrical and Computer Engineer}
+\dept{Electrical and Computer Engineering}
 
 %the name of your supervisor
 \principaladviser{Sarfraz Khurshid}
@@ -87,20 +87,23 @@ body/Design
 
 \graphicspath{{figures/}}
 \include{body/Introduction}
-\include {body/ConAirOverview}
-\include {body/Design}
+\include{body/ConAirOverview}
+\include{body/Design}
+\include{body/Infrastructure}
+\include{body/Experiment}
+\include{body/Future}
 \include{body/RelatedWork}
 
-\include{body/ModelingSS} 
+%\include{body/ModelingSS} 
 %
-\include{body/PropertiesOSS}
+%\include{body/PropertiesOSS}
 
-\include{body/Experiments}
+%\include{body/Experiments}
 
 \include{body/Conclusion}
 
-\bibliographystyle{unsrt}
-\bibliography{Reference/reference}
+%\bibliographystyle{unsrt}
+%\bibliography{Reference/reference}
 %\mypub{My Publication Related to this
 %Report}{unsrt}{Reference/mypub}
 

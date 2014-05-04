@@ -1,0 +1,50 @@
+\chapter{Infrastructure}
+In this chapter we will discuss our infrastructure setup for building and
+running ConAir, and the toolchain of using the ConAir tool.
+
+\section{Infrastructure Setup}
+One of the standards that was mentioned previously to evaluate the tool is
+Compatibility, which means the tool should have no OS/hardware modification.
+When we try to build and run the ConAir tool, however, we find out that although
+it does not require any OS/hardware modification, it has very strong requirement
+to the OS and corresponding software installed.
+
+We make many effort in order to make Conair compile and run. For example, We try
+four different versions of Linux: Ubuntu 12.04 x64, Ubuntu 12.04 x86, the
+Lonestar Cluster of UT, as well as CentOS 5.9. The first two are the OS that we
+have as a virtual machine. None of them work perfectly. Then we ask the
+author and they provide us the specific OS version that they use. Then we try
+Lonestar Cluster which has an OS pretty similar to the one that the author
+provides, but we do not have the previlidge to install the required runtime
+library. Finally we tried CentOS 5.9 which is exactly the same as the author
+suggests, but we still cannot fix the compatibility issue (missing GLIBCXX\_3.4.9
+and GLIBC\_2.7).
+
+We also try different versions of LLVM, llvm-gcc and gcc. Specifically, we try
+two versions of LLVM, llvm-2.8 and llvm 2.9; we try three versions of llvm-gcc:
+the binary of llvm-gcc-4.2-2.8, binary of llvm-gcc-4.2-2.9, and llvm-gcc-4.2-2.8
+built from source code; also we try five different versions of gcc: 4.7.3,
+4.6.3, 4.4.3, 4.2.1 and 4.3.1 from source. For each try we do our best to remove
+any compilation or dependency issue, and we try many combination between
+different OS, LLVM, llvm-gcc and gcc. This process is very tedious and it take
+more than 50\% of our time for this project. However, although we try very hard
+we still cannot find a combination that is perfectly working. The main problem
+we face is that the front end of LLVM cannot treat floating point global
+variables appropriately. We believe that is because the version of LLVM we use
+is too old, but ConAir does not support newer version of LLVM.
+
+Fortunately, although we have the above issue, for normal multithread programs
+without floating points we are able to make ConAir compile and run. Therefore we
+can still do some experiments to demonstrate the effect of ConAir. We will show
+our experiment results in section~\ref{sec:experiment}
+
+\section{Toolchain}
+There are several steps needed to make ConAir work, and
+Figure~\ref{fig:toolchain} shows the structure of the ConAir ToolChain.
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{body/toolchain.png}
+\caption{Toolchain of ConAir}
+\label{fig:toolchain}
+\end{figure}
+
