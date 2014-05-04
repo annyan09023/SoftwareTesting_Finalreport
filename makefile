@@ -1,5 +1,5 @@
 # makefile for pdf2latex
-name=sigplanconf-template
+name=sig-alternate
 
 open: pdf
 		open -a Preview ${name}.pdf;

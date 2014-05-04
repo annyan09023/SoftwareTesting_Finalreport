@@ -1,6 +1,6 @@
-\chapter{ConAir Overview}
+\section{ConAir Overview}
 \label{chp:Overview}
-\section {Two observations}
+\subsection {Two observations}
 The design of ConAir is based on two ovservations:
 \begin{itemize}
 \item
@@ -8,35 +8,35 @@ Roll back a single thread is sufficient to recover from most concurrency-bug fai
 \item
 Reexecute an idempotent region is sufficient to recover from many concurrency-bug failures.
 \end{itemize}
-\section{Observation I}
+\subsection{Observation I}
 For most concurrency bugs, reexecuting one failing thread is sufficient to fix bugs.In the following part, most common concurrency bugs will be discussed separately:\\
-\subsection{Recovering atomicity-violation bugs}
+\subsubsection{Recovering atomicity-violation bugs}
 Atomicity violations contribute to about 70 \% of real-word non-deadlock bugs[].For read and write operations, there are four kinds of atomic violation operations, including Read after Write (RAW), Read after Read (RAR), Write after Read (RAW) and Write after Write (WAW). 
 \begin{figure}
-\begin{minipage}[t]{0.52\linewidth}
+\begin{minipage}[t]{0.48\linewidth}
 \centering
-\includegraphics[width=\textwidth]{body/RAW.png}
+\includegraphics[width=\textwidth]{figs/RAW.png}
 \caption{RAW atomic violation}
 \label {RAW}
 \end{minipage}%
-\begin{minipage}[t]{0.52\linewidth}
+\begin{minipage}[t]{0.48\linewidth}
 \centering
-\includegraphics[width=\textwidth]{body/WAW.png}
+\includegraphics[width=\textwidth]{figs/WAW.png}
 \caption{Violating WAW atomicity}
 \label{WAW}
 \end{minipage}
 \end{figure}
 
 \begin{figure}
-\begin{minipage}[t]{0.52\linewidth}
+\begin{minipage}[t]{0.48\linewidth}
 \centering
-\includegraphics[width=\textwidth]{body/RAR.png}
+\includegraphics[width=\textwidth]{figs/RAR.png}
 \caption{RAR atomic violation}
 \label {RAR}
 \end{minipage}%
-\begin{minipage}[t]{0.52\linewidth}
+\begin{minipage}[t]{0.48\linewidth}
 \centering
-\includegraphics[width=\textwidth]{body/WAR.png}
+\includegraphics[width=\textwidth]{figs/WAR.png}
 \caption{Violating WAR atomicity}
 \label{WAR}
 \end{minipage}
@@ -46,22 +46,22 @@ As in Figure~\ref{WAW}, if thread 2 happens before the end of thread 1, error ha
 As in Figure~\ref{RAR} and Figure~\ref{WAR}, still rolling back one thread can fix the possible concurrency bugs. In general, for atomic violation bugs, rolling back one thread is sufficient to fix them.
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.7\textwidth]{body/order_violation.png}
+\includegraphics[width=0.5\textwidth]{figs/order_violation.png}
 \caption{Order violation bug}
 \label{order violation}
 \end{figure}
-\subsection{Recovering order-violation bugs}
+\subsubsection{Recovering order-violation bugs}
 Another kind of concurrency bug is called order-violation. That is one thread is required to be finished before another one. For example, in Figure~\ref{order violation}, A is required to finish before B. In this case, roll back B until A finishes can fix the bug.
-\subsection{Rocovering deadlock bugs}
+\subsubsection{Rocovering deadlock bugs}
 A very common concurrency bug in multi-thread programming is deadlock problem. As in Figure~\ref{deadlock}, thread A holds lock 1, thread B holds lock 2 and thread C holds lock 3. A still wants lock 2, while it's held by B. So A is blocked. Similar situation happens in B and C. In this case, roll back any thread can fix deadlock. If roll back B, B releases lock 2, so that C can finish and release lock 3 and 2. Then B can finish. Finally, A can get all resource it wants and finish itself.
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.7\textwidth]{body/deadlock.png}
+\includegraphics[width=0.5\textwidth]{figs/deadlock.png}
 \caption{Deadlock}
 \label{deadlock}
 \end{figure}
 
-\section{Observation II}
+\subsection{Observation II}
 \label{sbii}
 For observation II, it indicates that roll back certain area of one thread is sufficient to fix bugs and that area is defined as idempotent region.\\
 \textbf{Idempotent region}:a code region that can be reexecuted for any number of times without changing the program semantics.\\

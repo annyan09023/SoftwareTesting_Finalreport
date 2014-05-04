@@ -1,8 +1,8 @@
-\chapter{Infrastructure}
+\section{Infrastructure}
 In this chapter we will discuss our infrastructure setup for building and
 running ConAir, and the toolchain of using the ConAir tool.
 
-\section{Infrastructure Setup}
+\subsection{Infrastructure Setup}
 One of the standards that was mentioned previously to evaluate the tool is
 Compatibility, which means the tool should have no OS/hardware modification.
 When we try to build and run the ConAir tool, however, we find out that although
@@ -38,13 +38,46 @@ without floating points we are able to make ConAir compile and run. Therefore we
 can still do some experiments to demonstrate the effect of ConAir. We will show
 our experiment results in section~\ref{sec:experiment}
 
-\section{Toolchain}
+\subsection{Toolchain}
 There are several steps needed to make ConAir work, and
-Figure~\ref{fig:toolchain} shows the structure of the ConAir ToolChain.
-\begin{figure}
+Figure~\ref{fig:toolchain} shows the structure of the ConAir ToolChain. Here we
+want to generate two executables, the original one and the fixed one, so that we
+can compare and see if the concurrency bugs have been fixed or not.\\
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{body/toolchain.png}
+\includegraphics[width=0.5\textwidth]{figs/toolchain.png}
 \caption{Toolchain of ConAir}
 \label{fig:toolchain}
 \end{figure}
+\textbf{Generating the original executable}
+In order to generate the original executable, we first use \textbf{llvm-gcc}, a
+LLVM front end compiler, to compile the C source code \textit{Hello.c}, into
+LLVM bitcode \textit{Hello.bc}. LLVM bitcode is a high level intermediate
+representaton (IR) of LLVM. It will unify source code in different languages
+into a common source code, with no optimization applied.
+
+After the LLVM bitcode is generated, we then use \textbf{llvm-dis}, a LLVM
+diassembler, to diassemble the above bitcode into LLVM assembly code
+\textit{Hello.ll}. After that, we will use \textbf{llc}, a static compiler of
+llvm, to generate the above assembly code into another assembly code for a
+specified architecture \textit{Hello.s}. Finally, we will use another front end
+compiler \textbf{llvm-g++} to compile the above assembly code into the original
+executable \textit{Hello.init}\\
+
+\textbf{Generating the fixed executable}
+In order to generate the fixed executable, we reuse the same bitcode
+\textit{Hello.bc} above. We use LLVM \textbf{opt}, which is the LLVM optimizer,
+to load the ConAir library first. This step will perform static code analysis of
+the above bitcode, identify the failure site and idempotent region, and do the
+code transformation by inserting setjump and longump to the failure site and
+idempotent regions. All above process is done in the bitcode level, and in the
+end it will generate a new bitcode called \textit{Hello1.bc}.
+
+After the new bitcode is generated, this time we directly use \textbf{llvm-g++}
+together with the runtime libraries of ConAir loaded by the
+\textbf{-use-gold-plugin} option, to generate the fixed executable
+\textit{Hello.final}.
+
+In later experiments for each program we will generate both the original and
+fixed executables, and compare their performance.
 
