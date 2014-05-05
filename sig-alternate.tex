@@ -66,6 +66,8 @@
 \lstset{escapeinside={<@}{@>}}
 \usepackage{rotating}
 \usepackage{cite}
+\usepackage{caption}
+
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -163,6 +165,19 @@
 
 \maketitle
 \begin{abstract}
+Concurrency bugs are usually hidden in software and is not really easy to be
+exposed. These bugs often causes severe failure to end-users but they are
+usually hard to fix by developers. ConAir~\cite{zhang2013conair} is a tool
+targeting on recover and fix concurrent bugs for end users. It is based on two
+observations that rolling back a single thread by re-executing idempotent region
+for that thread is enough for recovering many of the concurrent bugs.
+
+In this project we build and run ConAir from source code provided by the author.
+Experiments from the authors of ConAir shows that ConAir is capable to fix and
+recover concurrency bugs in many real life programs with different sizes, and
+our own experiment results demonstrate that other than recovering the known four
+types of concurrency bugs, ConAir has potential to fix more unknown types of
+bugs.
 \end{abstract}
 
 
@@ -173,7 +188,7 @@
 \category{D.4.1}{Operating Systems}{Process Management}
 
 
-\keywords{idempotency, concurrenty bugs, failure recovery, static analysis, bug
+\keywords{idempotency, concurrency bugs, failure recovery, static analysis, bug
 fixing}
 
 \input{Introduction}
@@ -181,10 +196,10 @@ fixing}
 \input{Design}
 \input{Infrastructure}
 \input{Experiment}
-\input{Future}
-\input{RelatedWork}
+\input{Discussion}
+\input{Conclusion}
 
-\bibliographystyle{abbrv}
+\bibliographystyle{unsrt}
 \bibliography{Reference}
 
 \end{document}

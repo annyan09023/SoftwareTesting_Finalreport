@@ -3,12 +3,12 @@
 \subsection{Background}
 Multi-thread programming becomes more and more popular with the advent of
 multi-core. With multi-core, multi-thread programming has a large advantage over
-its CPU utility and efficiency. From the low level operating systen (OS)to high
+its CPU utility and efficiency. From the low level operating system(OS) to high
 level application, multi-thread gains its popularity. A lot of elements should
 be considered in multi-thread programming, such as threads synchronization, the
 protection of critical section and the prevention of deadlock. Whereas, the
 debug of multi-thread programming is very hard because some bugs may happen in
-certain execution of threads. Unfortunately, the order of threads exectution is
+certain execution of threads. Unfortunately, the order of threads execution is
 decided by scheduler of OS, which is limitedly revised by users. So it's very
 hard for a user to claim he or she writes a bug-free multi-thread program. A
 very common way to debug it is to execute the program for many times, such as
@@ -29,9 +29,9 @@ recovery a buggy multi-thread program.
 effectiveness, including:\\
 \indent\textbf{Compatibility}: It is used to judge
 whether there is OS/Hardware modification for the tool. Some tools need low
-level modification, for example, the change of scheduler of OS. Wheras, OS is
+level modification, for example, the change of scheduler of OS. Whereas, OS is
 designed to be stable and limitedly changeable. If a tool needs OS modification,
-it may cause some future problems and demage the stableness of the whole system.
+it may cause some future problems and damage the stableness of the whole system.
 Sometimes, it may even cause the crush of the system.\\
 \indent\textbf{Correctness}: It is used to determine whether the usage of a tool
 will generate results infeasible for original software. If so, the usage of a

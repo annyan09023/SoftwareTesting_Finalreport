@@ -1,0 +1,32 @@
+\section{Discussions and Future Work}
+In this project we explored the state-of-art research tool ConAir, which is used
+for concurrency bug recovery. We believe that there are many dimensions that the
+  current work for both ConAir and our project can be extended.
+
+\subsection{Better compatibility}
+In this project we have a very painful experience setting up ConAir and make it
+running. One of the reasons is that ConAir is built based on old version of
+Linux and LLVM, and it does not recognize the latest compilers and libraries.
+Since ConAir is a very effective tool, it is worthy to spend time to maintain
+this tool so that it is compatible for modern OS/software, and therefore it
+could be more widely used.
+
+\subsection{New type of concurrency bugs}
+From our experiment result in Section\ref{sec:ex-other} we can see that for some
+other types of concurrency bugs ConAir is still capable in fixing some of them.
+It is promising that ConAir being extended to support new types of concurrency
+bugs. For example, bug4 in previous experiment has a synchronization problem,
+which is not any of the four known concurrency bugs. However, ConAir is able to
+fix that bug. In the future we can identify more such bugs and extend ConAir to
+add support to those bugs.
+
+\subsection{Concurrent program generator}
+In this project we generate all our buggy concurrent programs by hand. However,
+during this process we feel that many of these programs are very similar in
+format. It motivates us to have an idea of building a program generator for
+concurrent programs for both bug-free and buggy programs. Specifically, we could
+provide some parameters, such as number of threads, the work to be performed for
+each thread, different thread scheduling, etc. If this current program generator
+can be built, it could be used to evaluate many concurrent program testing and
+bug recovery tool such as ConAir, and it will be of grate value for many
+researches.

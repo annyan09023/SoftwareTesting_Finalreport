@@ -1,33 +1,26 @@
-\chapter{Conclusion}
-\label{chp:conc} We have presented OSS as a new computable platform
-for the uniform and consistent measurement of concept similarity and
-combination. The platform, aiming at a high coverage of semantic
-space with a minimal concept set, shapes the ways of modeling
-concept inter-relatedness, while providing guideline for concept
-development. To show the feasibility of OSS, we explore and
-experiment search related tasks including word sense disambiguation
-and concept selection. Our findings show that, due to the uniform
-way of assessing similarity, OSS is a feasible solution for
-large-scale video search and concept combination. Currently we
-assume that OSS exists in a linear space for computational reason.
-Whether a nonlinear space assumption is feasible for OSS remains an
-unanswered issue that worths further investigation.
+\section{Conclusion}
+In this project we have a chance to explore the state-of-art research tool
+ConAir, which is a tool used for concurrency bug recovery. We read through the
+ConAir paper and have a good understanding of the behind working principles of
+it, such as single thread rolling back and idempotent region. From the
+ConAir paper we know that it is capable of recovering concurrent bugs of many
+real-life programs, and in the experiment we demonstrate that it is able to fix
+concurrency bug with assertion failure, segmentation fault and wrong output.
+Although we cannot demonstrate ConAir's ability to fix deadlock bugs, we still
+believe that is due to the settings that we use rather than the ConAir itself.
+Also, we find out that other than the four types of bugs specified in the ConAir
+paper, it is possible for ConAir to fix, or at least try to fix, some other
+unknown types of concurrency bugs. We think ConAir is a very powerful tool, and
+it would be applied to many real-life programs if it can be made compatible with
+the latest OS and compiler.
 
-A useful resource currently not explored in OSS is the co-occurrence
-statistics of concepts in video data. The statistics can be directly
-utilized for basis concept selection, amending the semantic space
-such that the co-occurred behavior can also be modeled. Under such
-circumstance, the space is enriched with both ontology semantic and
-statistics useful for video search. Developing the basis concepts in
-this space as detectors could be more realistic since the statistics
-indeed hint the utility and observability of the concepts.
-%
-In addition to positively correlated concepts, the set of negative
-concepts (e.g., {\em indoor} versus {\em outdoor}) is also a useful
-piece of information for fast pruning in video search as presented
-in \cite{W.H.Lin:ICME:2006}. It is possible to have another
-``negatively correlated'' semantic space, complementary to OSS, to
-allow fast filtering one on hand, and effective searching on the
-other hand. We will consider both aspects (co-occurrence and
-negative correlation) as the future extension of OSS.
-%
+Other than having a chance to use ConAir, we also enhanced our understanding of
+pthread programming from this project by understanding ConAir and writing our
+own multithread programs. Also, by setting up and compiling ConAir we enhanced
+our understanding of Linux and LLVM infrastructure.
+
+\section{Acknowledgements}
+We would like to thank Dr. Wei Zhang and Prof. Shan Lu from Computer Science
+Department of University of Wisconsin-Madison for providing us the source code
+of ConAir. Also, they offered us lots of help when we have problem setting up and
+running ConAir.

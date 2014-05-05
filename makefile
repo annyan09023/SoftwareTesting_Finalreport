@@ -5,6 +5,7 @@ open: pdf
 		open -a Preview ${name}.pdf;
 pdf:
 		pdflatex ${name}
+		bibtex ${name}
 		pdflatex ${name}.tex;
 		bibtex ${name}
 		pdflatex ${name}.tex;
